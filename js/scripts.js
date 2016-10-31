@@ -31,6 +31,9 @@ $(document).ready(function() {
       $("input:checkbox[name=todo]:checked").last().change(function(){
         $(this.parentElement).css("text-decoration","none");
       });
+      $("input:checkbox[name=todo]:not(:checked)").last().change(function(){
+        $(this.parentElement).css("text-decoration","line-through");
+      });
     });
     $("input#task, input#notes").val("");
   });
