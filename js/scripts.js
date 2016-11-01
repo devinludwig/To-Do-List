@@ -3,21 +3,25 @@ function Task(task, notes) {
   this.notes = notes;
 };
 
-// Task.prototype.fullName = function() {
-//   return this.firstName + " " + this.lastName;
-// };
+  Task.prototype.priority = function() {
+    var importance = $("#importance").val();
+    if (importance === "1") {
+      return this.task.toUpperCase();
+    } else {
+      return this.task;
+    }
+  };
 
 $(document).ready(function() {
 
   $('form#new-task').submit(function(event) {
     event.preventDefault();
-
     var inputtedTask = $('input#new-task').val();
     var inputtedNotes = $('input#new-notes').val();
     var newTask = new Task(inputtedTask, inputtedNotes);
     $(".show-list").show();
     $("ul#remaining").append("<li id=" + newTask.task.replace(/\s+/g, '')
- +"><span class='task'>" + newTask.task + "</span></li>");
+ +"><span class='task'>" + newTask.priority() + "</span></li>");
     $("ul#tasks").append("<li><input type='checkbox' name='todo' value=" + newTask.task + "> " + newTask.task + "</li>");
     console.log(('li').value)
     $(".task").last().click(function() {
